@@ -1,0 +1,142 @@
+--// Phong Rô Bờ Lóc Script Full Power //--
+repeat wait() until game:IsLoaded()
+
+-- Anti-AFK
+game:GetService("Players").LocalPlayer.Idled:Connect(function()
+    game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+
+-- Main UI
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Phong Rô Bờ Lóc | Blox Fruits", "Ocean")
+
+-- Tabs
+local MainTab = Window:NewTab("Main")
+local FarmTab = Window:NewTab("Farm")
+local TeleTab = Window:NewTab("Teleport")
+local RaidTab = Window:NewTab("Raid")
+local MiscTab = Window:NewTab("Misc")
+
+-- Main
+local MainSection = MainTab:NewSection("Auto Stuff")
+
+MainSection:NewToggle("Auto Attack Combo", "Auto Combo Skill", function(state)
+    _G.AutoCombo = state
+    while _G.AutoCombo do wait()
+        game:GetService("VirtualInputManager"):SendKeyEvent(true, "Z", false, game)
+        wait(0.5)
+        game:GetService("VirtualInputManager"):SendKeyEvent(true, "X", false, game)
+        wait(0.5)
+        game:GetService("VirtualInputManager"):SendKeyEvent(true, "C", false, game)
+    end
+end)
+
+MainSection:NewButton("Fast Unlock All Skills", "Unlock nhanh", function()
+    for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+        if v:IsA("Tool") then
+            v.RemoteFunction:InvokeServer("Skill1")
+            v.RemoteFunction:InvokeServer("Skill2")
+            v.RemoteFunction:InvokeServer("Skill3")
+        end
+    end
+end)
+
+-- Farm
+local FarmSection = FarmTab:NewSection("Auto Farm")
+
+FarmSection:NewToggle("Auto Farm Mob", "Farm Quái", function(state)
+    _G.AutoFarmMob = state
+    while _G.AutoFarmMob do wait()
+        -- code farm mob ở đây
+        print("Đang farm quái...")
+    end
+end)
+
+FarmSection:NewToggle("Auto Farm Boss", "Farm Boss", function(state)
+    _G.AutoFarmBoss = state
+    while _G.AutoFarmBoss do wait()
+        -- code farm boss ở đây
+        print("Đang farm boss...")
+    end
+end)
+
+FarmSection:NewToggle("Auto Farm Sea Beast", "Farm Sea Beast", function(state)
+    _G.AutoFarmSeaBeast = state
+    while _G.AutoFarmSeaBeast do wait()
+        -- code farm Sea Beast ở đây
+        print("Đang farm Sea Beast...")
+    end
+end)
+
+-- Raid
+local RaidSection = RaidTab:NewSection("Auto Raid")
+
+RaidSection:NewToggle("Auto Start Raid", "Auto Raid", function(state)
+    _G.AutoRaid = state
+    while _G.AutoRaid do wait()
+        -- code Auto Raid ở đây
+        print("Đang vào raid...")
+    end
+end)
+
+-- Teleport
+local TeleSection = TeleTab:NewSection("Teleport Island")
+
+TeleSection:NewButton("Teleport Jungle", "Dịch chuyển đến Jungle", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1603, 36, 145)
+end)
+
+TeleSection:NewButton("Teleport Pirate Village", "Dịch chuyển đến Pirate Village", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1122, 5, 3876)
+end)
+
+TeleSection:NewButton("Teleport Sky Island", "Dịch chuyển đến Sky Island", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4745, 245, -2602)
+end)
+
+TeleSection:NewButton("Teleport Fountain", "Dịch chuyển đến Fountain", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5000, 38, 5000)
+end)
+
+-- Misc
+local MiscSection = MiscTab:NewSection("Misc Functions")
+
+MiscSection:NewButton("Server Hop", "Đổi Server", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/QunYfRU9"))()
+end)
+
+MiscSection:NewButton("Rejoin Server", "Vào lại Server", function()
+    game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId)
+end)
+
+MiscSection:NewButton("Enable Fly (Press E)", "Bay lên", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/K6hEzkYh"))()
+end)
+
+MiscSection:NewButton("ESP Player", "Hiển thị ESP của Player", function()
+    loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
+end)
+
+MiscSection:NewButton("Enable Auto Level Stats", "Tự động tăng cấp độ", function()
+    -- code tăng cấp độ stats ở đây
+    print("Đang tăng cấp độ stats...")
+end)
+
+-- Full Setup: Auto check Sea Level & Level up
+local FullSetupSection = MiscTab:NewSection("Full Setup")
+
+FullSetupSection:NewToggle("Auto Check Sea 3 & Sea 2", "Kiểm tra Level Sea", function(state)
+    _G.AutoCheckSea = state
+    while _G.AutoCheckSea do wait()
+        -- code check Sea ở đây
+        print("Đang kiểm tra Sea Level...")
+    end
+end)
+
+FullSetupSection:NewToggle("Auto Farm Fruit", "Farm Trái Ác Quỷ", function(state)
+    _G.AutoFarmFruit = state
+    while _G.AutoFarmFruit do wait()
+        -- code farm trái ở đây
+        print("Đang farm trái...")
+    end
+end)
